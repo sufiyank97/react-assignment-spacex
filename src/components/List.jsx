@@ -14,20 +14,25 @@ for (var i = 2006; i <= 2020; i = i + 2) {
 const List = () => {
     const [state, setstate] = useState({ datas: [] })
     useEffect(() => {
-
+        let isCancelled = false;
         const fetchApi = async () => {
-            try {
 
+            try {
                 const res = await axios.get('https://api.spaceXdata.com/v3/launches?limit=100')
-                setstate({
-                    ...state,
-                    datas: res.data
-                })
+                if (!isCancelled) {
+                    setstate({
+                        ...state,
+                        datas: res.data
+                    })
+                }
             } catch (e) {
                 window.alert(e)
             }
         }
         fetchApi()
+        return () => {
+            isCancelled = true;
+        }
     }, [])
 
 
@@ -85,7 +90,7 @@ const List = () => {
                                     <button onClick={() => handleYear(year.first)}>{year.first}</button>
                                     {
                                         (year.second) ? (
-                                            <button onClick={() => handleYear(year.first)}>{year.second}</button>
+                                            <button onClick={() => handleYear(year.second)}>{year.second}</button>
                                         ) : null
                                     }
                                 </div>
@@ -133,6 +138,13 @@ const List = () => {
                                                     <h5 className="card-title values" >{`${data.mission_name} #${data.flight_number}`}</h5>
                                                     <div className="card-body">
                                                         <h5>Mission Ids:</h5>
+                                                        <ul>
+                                                            {
+                                                                data.mission_id.map((id, i) =>
+                                                                    <li key={i} className="values">{id}</li>
+                                                                )
+                                                            }
+                                                        </ul>
                                                         <h5>Launch Year:</h5>
                                                         <h5 className="values">{data.launch_year}</h5>
                                                         <h5>Successfull Launch: </h5>

@@ -4,7 +4,10 @@
     flex-wrap: wrap;
 }
 
-
+button{
+    border-radius: 15% !important;
+    background-color: aliceblue;
+}
 .col-left{
     border: 1px solid black;
     width: 17%;

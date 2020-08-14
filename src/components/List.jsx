@@ -79,7 +79,6 @@ const List = () => {
         <div className="container1">
             <div className="col-left py-2 px-2">
                 <div className="col1">
-
                     <h5>Filters</h5>
                     <div>
                         <h6 className="center-text">Launch year</h6>
@@ -116,7 +115,6 @@ const List = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div className="col-right">
@@ -173,16 +171,10 @@ const List = () => {
                                     }
                                     )
                                 }
-
-
-
                             </div>
-
                         )
                 }
-
             </div>
-
         </div>
     )
 }
